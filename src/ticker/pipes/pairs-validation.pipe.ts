@@ -1,5 +1,5 @@
 import { PipeTransform, BadRequestException } from '@nestjs/common';
-import { Pairs } from '../enums/pairs.enum';
+import { Pairs } from '../../utils/pairs.enum';
 
 export class PairsValidationPipe implements PipeTransform {
   transform(data: any) {

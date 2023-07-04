@@ -1,9 +1,15 @@
-import { Pairs } from 'src/ticker/enums/pairs.enum';
-import { Events } from './events-membrane.enum';
+import { Pairs } from 'src/utils/pairs.enum';
 
 export const tiker = (pair: Pairs) =>
   JSON.stringify({
     event: 'subscribe',
-    channel: Events.TICKER,
+    channel: 'ticker',
+    symbol: pair,
+  });
+
+export const book = (pair: Pairs) =>
+  JSON.stringify({
+    event: 'subscribe',
+    channel: 'book',
     symbol: pair,
   });
