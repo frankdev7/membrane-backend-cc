@@ -1,4 +1,4 @@
-import { Pairs } from 'src/utils/pairs.enum';
+import { Pairs } from './pairs.enum';
 
 export const tiker = (pair: Pairs) =>
   JSON.stringify({

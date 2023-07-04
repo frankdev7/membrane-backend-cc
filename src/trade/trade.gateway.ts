@@ -9,21 +9,21 @@ import {
 import { RequestTradeDto } from './dtos/request-trade.dto';
 import { Server, WebSocket } from 'ws';
 import { Logger } from '@nestjs/common';
-import { BookBitFinexWebSocket } from './book-bitfinex.websocket';
 import { Observable, map } from 'rxjs';
 import { ResponseTradeDto } from './dtos/response-trade.dto';
 import { Events } from 'src/utils/events-membrane.enum';
 import { ITradeMessage } from './dtos/trade-message.dto';
 import { IBookMessageMembrane } from './dtos/book-membrane.dto';
 import { Operations } from 'src/utils/operations.enum';
+import { BookBitFinexWebSocket } from 'src/bitfinex/websockets/book-bitfinex.websocket';
 
-@WebSocketGateway()
+@WebSocketGateway(8080)
 export class TradeGateway {
   @WebSocketServer()
   server: Server;
 
-  private readonly logger = new Logger(TradeGateway.name);
-  private clients: Map<WebSocket, BookBitFinexWebSocket> = new Map();
+  readonly logger = new Logger(TradeGateway.name);
+  clients: Map<WebSocket, BookBitFinexWebSocket> = new Map();
 
   @SubscribeMessage('trade')
   trade(
@@ -60,7 +60,7 @@ export class TradeGateway {
     }
   }
 
-  private mapTradeMessage(bookMsg: IBookMessageMembrane): ITradeMessage {
+  mapTradeMessage(bookMsg: IBookMessageMembrane): ITradeMessage {
     return {
       event: Events.TRADE,
       data: {
@@ -69,7 +69,7 @@ export class TradeGateway {
     };
   }
 
-  private handleClientClose(client: WebSocket) {
+  handleClientClose(client: WebSocket) {
     client.on('close', () => {
       this.logger.log(`Client closed connection`);
       const traderWs = this.clients.get(client);

@@ -1,7 +1,7 @@
 import { WebSocket } from 'ws';
 import { Subject, filter, map } from 'rxjs';
 import { tiker } from 'src/utils/events.bitfinex';
-import { Pairs } from '../utils/pairs.enum';
+import { Pairs } from 'src/utils/pairs.enum';
 
 export class TickerBitFinexWebSocket {
   private ws: WebSocket;

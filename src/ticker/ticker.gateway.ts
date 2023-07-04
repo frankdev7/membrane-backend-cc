@@ -7,15 +7,15 @@ import {
   WsResponse,
 } from '@nestjs/websockets';
 import { Server, WebSocket } from 'ws';
-import { TickerBitFinexWebSocket } from './ticker-bitfinex.websocket';
 import { Observable, map } from 'rxjs';
 import { ResponseTickerDto } from './dtos/response-ticker.dto';
 import { ITickerMessage } from './dtos/ticker-message.dto';
 import { Events } from 'src/utils/events-membrane.enum';
 import { RequestTickerDto } from './dtos/request-ticker.dto';
 import { Logger } from '@nestjs/common';
+import { TickerBitFinexWebSocket } from 'src/bitfinex/websockets/ticker-bitfinex.websocket';
 
-@WebSocketGateway()
+@WebSocketGateway(8080)
 export class TickerGateway {
   @WebSocketServer()
   server: Server;

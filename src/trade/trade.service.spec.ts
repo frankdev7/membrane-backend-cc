@@ -1,19 +1,18 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { TradeGateway } from './trade.gateway';
 import { TradeService } from './trade.service';
 
-describe('TradeGateway', () => {
-  let gateway: TradeGateway;
+describe('TradeService', () => {
+  let service: TradeService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [TradeGateway, TradeService],
+      providers: [TradeService],
     }).compile();
 
-    gateway = module.get<TradeGateway>(TradeGateway);
+    service = module.get<TradeService>(TradeService);
   });
 
   it('should be defined', () => {
-    expect(gateway).toBeDefined();
+    expect(service).toBeDefined();
   });
 });

@@ -1,9 +1,9 @@
 import { WebSocket } from 'ws';
 import { Subject, filter, map, scan, skip, takeWhile } from 'rxjs';
 import { book } from 'src/utils/events.bitfinex';
-import { Pairs } from 'src/utils/pairs.enum';
-import { IBookMessageBitfinex } from './dtos/book-bitfinex.dto';
+import { IBookMessageBitfinex } from '../dtos/book-bitfinex.dto';
 import { Operations } from 'src/utils/operations.enum';
+import { Pairs } from 'src/utils/pairs.enum';
 
 export class BookBitFinexWebSocket {
   private ws: WebSocket;
